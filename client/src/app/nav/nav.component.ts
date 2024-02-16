@@ -30,9 +30,7 @@ export class NavComponent implements OnInit {
       next: (responce) => {
         this.router.navigate(["/members"]);
         console.log(responce);
-      },
-      error: (error) => {console.log(error),
-        this.toaster.error(error.error)}
+      }
     });
   }
   logout() {

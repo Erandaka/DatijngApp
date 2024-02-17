@@ -1,6 +1,8 @@
 ﻿using System.Net;
 using System.Text.Json;
 using API.Errors;
+using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.JSInterop;
 
 namespace API;
@@ -27,7 +29,9 @@ public class ExceptionMiddleware
         catch (Exception ex)
         {
             _logger.LogError(ex, ex.Message);
+ 
             context.Response.ContentType = "application/json";
+;
             context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
 
             var response = _env.IsDevelopment()
@@ -41,7 +45,9 @@ public class ExceptionMiddleware
 
             await context.Response.WriteAsync(json);
 
+            }
+
+            
         }
 
-    }
 }
